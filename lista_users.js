@@ -1,64 +1,67 @@
-const listaUsers =  () => {
+const listaUsers = () => {
 
-     fetch(`https://jsonplaceholder.typicode.com/users`)
-         
-         .then(response => response.json())  
-         .then( async json => {
-             //console.log(json);
+    fetch(`https://jsonplaceholder.typicode.com/users`)
+        .then(response => response.json())
+        .then(data => {
+            const tabela = document.querySelector('tbody');
 
-             let tbody = document.getElementById('tbody');
+            tabela.innerText = '';
 
-             let listaUsuarios = [];
+            data.forEach(item => {
+                const tr = document.createElement('tr');
+                const td_id = document.createElement('td');
+                const td_name = document.createElement('td');
+                const td_email = document.createElement('td');
+                const td_street = document.createElement('td');
+                const td_suite = document.createElement('td');
+                const td_city = document.createElement('td');
+                const td_phone = document.createElement('td');
+                const td_companyName = document.createElement('td');
 
-             listaUsuarios = json;
+                td_id.innerText = item.id;
+                td_name.innerText = item.name;
+                td_email.innerText = item.email;
+                td_street.innerText = item.address.street;
+                td_suite.innerText = item.address.suite;
+                td_city.innerText = item.address.city;
+                td_phone.innerText = item.phone;
+                td_companyName.innerText = item.company.name;
 
-             for (let item of listaUsuarios){
-                
-                var linha = document.createElement('tr');
-                var id = document.createElement('td');
-                // var name = document.createElement('td');
-                // var name = document.createElement('td');
-                // var email = document.createElement('td');
-                // var street = document.createElement('td');
-                // var city = document.createElement('td');
-                // var phone = document.createElement('td');
-                // var companyName = document.createElement('td');
+                // console.log(item.id);
 
-                id.textContent = item.id;
-                linha.appendChild(id);
-                console.log(id);
+                tr.appendChild(td_id);
+                tr.appendChild(td_name);
+                tr.appendChild(td_email);
+                tr.appendChild(td_street);
+                tr.appendChild(td_suite);
+                tr.appendChild(td_city);
+                tr.appendChild(td_phone);
+                tr.appendChild(td_companyName);
 
-
-                // let id = item.id;
-                // console.log(id);
-
-                // let name = item.name;
-                // console.log(name);
-
-                // let email = item.email;
-                // console.log(email);
-
-                // let street = item.address.street;
-                // console.log(street);
-
-                // let city = item.address.city;
-                // console.log(city);
-
-                // let phone = item.phone;
-                // console.log(phone);
-
-                // let companyName = item.company.name;
-                // console.log(companyName);
+                tabela.appendChild(tr);
 
 
+            })
+                //.catch(err => console.log('Erro de solicitação', err));
 
-             }
 
-             
-         }) 
-         .catch(err => console.log('Erro de solicitação', err)); 
- 
- 
- }
+        })
 
- listaUsers();
+}
+
+listaUsers();
+
+const pesquisarId = () => {
+
+    alert("Pesquisar Id");
+
+
+}
+
+
+const pesquisarNome = () => {
+
+    alert("Pesquisar Nome");
+
+
+}
